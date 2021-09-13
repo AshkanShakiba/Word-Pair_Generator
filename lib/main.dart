@@ -24,32 +24,32 @@ class Words extends StatefulWidget {
 }
 
 class WordsState extends State<Words> {
+  final wordPairs=<WordPair>[];
+
   Widget buildList() {
-    return ListView(
+    return ListView.builder(
       padding: EdgeInsets.all(8),
-      children: [
-        Container(
-          height: 50,
-          color: Colors.amberAccent,
-          child: Center(
-            child: Text("AAA"),
-          ),
+      itemBuilder: (context, item){
+        if(item.isOdd) {
+          return Divider();
+        }
+        var index=item~/2;
+        if(index>=wordPairs.length){
+          wordPairs.addAll(generateWordPairs().take(11));
+        }
+        return buildRow(wordPairs[index]);
+      }
+    );
+  }
+
+  Widget buildRow(WordPair wordPair){
+    return ListTile(
+      title: Text(
+        wordPair.asPascalCase,
+        style: TextStyle(
+          fontSize: 16
         ),
-        Container(
-          height: 50,
-          color: Colors.amber,
-          child: Center(
-            child: Text("BBB"),
-          ),
-        ),
-        Container(
-          height: 50,
-          color: Colors.orange,
-          child: Center(
-            child: Text("CCC"),
-          ),
-        )
-      ],
+      ),
     );
   }
 
