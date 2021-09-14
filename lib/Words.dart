@@ -14,9 +14,44 @@ class WordsState extends State<Words> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text("Word-Pair Generator")
+            title: Text("Word-Pair Generator"),
+            actions: <Widget>[
+              IconButton(
+                 icon: Icon(Icons.list),
+                onPressed: pushSaved,
+              ),
+            ],
         ),
         body: buildList()
+    );
+  }
+
+  pushSaved(){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          final Iterable<ListTile> tiles=savedWordPairs.map((WordPair wordPair) => ListTile(
+            title: Text(
+              wordPair.asPascalCase,
+              style: TextStyle(
+                  fontSize: 16
+              ),
+            ),
+          ));
+
+          final List<Widget> list=ListTile.divideTiles(
+              context: context,
+              tiles: tiles
+          ).toList();
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Saved Word-Pairs"),
+            ),
+            body: ListView(children: list),
+          );
+        }
+      )
     );
   }
 
