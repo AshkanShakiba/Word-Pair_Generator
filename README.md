@@ -4,6 +4,10 @@ Compound Words Suggester App
 
 Developed by [Flutter](https://github.com/flutter/flutter)
 
+<p align="center">
+  <img height="700" src="shot.png">
+</p>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
