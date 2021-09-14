@@ -52,6 +52,16 @@ class WordsState extends State<Words> {
         isSaved ? Icons.favorite : Icons.favorite_border,
         color: isSaved ? Colors.red : null
       ),
+      onTap: () {
+        setState(() {
+          if(isSaved){
+            savedWordPairs.remove(wordPair);
+          }
+          else {
+            savedWordPairs.add(wordPair);
+          }
+        });
+      },
     );
   }
 }
