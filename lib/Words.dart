@@ -21,6 +21,7 @@ class WordsState extends State<Words> {
   }
 
   final wordPairs=<WordPair>[];
+  final savedWordPairs=Set<WordPair>();
 
   Widget buildList() {
     return ListView.builder(
@@ -39,12 +40,17 @@ class WordsState extends State<Words> {
   }
 
   Widget buildRow(WordPair wordPair){
+    final isSaved=savedWordPairs.contains(wordPair);
     return ListTile(
       title: Text(
         wordPair.asPascalCase,
         style: TextStyle(
             fontSize: 16
         ),
+      ),
+      trailing: Icon(
+        isSaved ? Icons.favorite : Icons.favorite_border,
+        color: isSaved ? Colors.red : null
       ),
     );
   }
